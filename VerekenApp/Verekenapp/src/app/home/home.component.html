@@ -1,27 +1,52 @@
 
 
-<h1>Welcom!</h1>
+<h1>Calculator</h1>
+
+
 
 <div class="play-container">
-<p>You've clicked <span (click)="countClick()">this</span> {{clickCounter}} times. </p>
-
-</div>
-
-<div class="play-container">
-    <p>
-        <input type="text" [(ngModel)]="name">
-        <br>
-        <strong>You said: </strong> {{ name }} 
-    </p>
     
+    
+    <p>
+        <strong>Name:    
+            <input id="personName" name="personName" type="text" [(ngModel)]="name" class="form-control"
+            required minlength="3"
+            >
+            
+
+        
+        </strong>
+        
+        <br>
+        <strong>Amount:
+            <input  type="text" class="form-control" [(ngModel)]="amount" required pattern="^[0-9]*$"  >
+            
+        </strong>
+        <br>
+        <small> no comma needed if 8,00 spend write 800 last two zero's are behind the comma </small>
+        
+    </p>
+    <div class="button" (click)="countClick()">Submit</div> 
+</div>
+ 
+
+
+
+<div class="play-container">
+<ul class="person">
+    <li *ngFor="let person of people">
+        <span class="badge">Name: {{person.name}}</span> amount spent: {{person.moneySpent}}
+    </li>
+</ul>
 </div>
 
 <div class="play-container">
-    <ng-template [ngIf]="clickCounter > 4" [ngIfElse]="none">
-        <p>the click counter is greater than 4</p>
-    </ng-template>
 
-    <ng-template #none>
-        <p>the click counter is less then 4</p>
-    </ng-template>
+    <div class="button" (click)="Calculate()">Calculate</div>
+
+
+
+    <p>
+        {{result}}
+    </p>
 </div>
